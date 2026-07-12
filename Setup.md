@@ -86,7 +86,7 @@ Install-Module -Name z -Repository PSGallery -Scope CurrentUser -Force
 
 ```powershell
 New-Item -Path $PROFILE -Type File -Force
-notepad $PROFILE
+code $PROFILE
 ```
 
 You should get the path: `C:\Users\<user>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
@@ -98,3 +98,19 @@ You should get the path: `C:\Users\<user>\Documents\PowerShell\Microsoft.PowerSh
 ```
 
 (All the real config lives in the single `profile.ps1` file — no need to duplicate it in two places.)
+
+## Step 12: Wire up the Neovim config to dotfiles
+
+Neovim looks for its config at a fixed path: `$env:LOCALAPPDATA\nvim\init.lua`.
+That file should contain just one line, pointing back to the real config in dotfiles:
+
+```powershell
+New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\nvim" -Force
+code "$env:LOCALAPPDATA\nvim\init.lua"
+```
+
+```lua
+dofile("C:/Users/<user>/Documents/dotfiles/nvim/init.lua")
+```
+
+(All the real Neovim config — options, plugins, keymaps — lives in `dotfiles\nvim\` already.)
