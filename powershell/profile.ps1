@@ -3,10 +3,11 @@ Set-Alias -Name vim -Value nvim
 Set-Alias ll ls
 Set-Alias g git
 
+function gb { git branch }
 function gs { git status }
 function ga { git add . }
-function gc { param($msg) git commit -m $msg }
-function gp { git push }
+function gc { param($msg) git commit -m "$msg" }
+function gp { git push origin (git branch --show-current) }
 
 # Oh My Posh prompt theme
 oh-my-posh init pwsh --config "$HOME\Documents\dotfiles\powershell\my_profile.omp.json" | Invoke-Expression
