@@ -8,7 +8,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
 require("lazy").setup({
   {
     "folke/snacks.nvim",
@@ -19,7 +18,7 @@ require("lazy").setup({
         enabled = true,
         preset = {
           header = [[
- ██████╗ ███╗   ███╗███████╗ ██████╗  █████╗ 
+ ██████╗ ███╗   ███╗███████╗ ██████╗  █████╗
 ██╔═══██╗████╗ ████║██╔════╝██╔════╝ ██╔══██╗
 ██║   ██║██╔████╔██║█████╗  ██║  ███╗███████║
 ██║   ██║██║╚██╔╝██║██╔══╝  ██║   ██║██╔══██║
@@ -36,15 +35,17 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
-        options = { theme = "gruvbox" },
+        options = { theme = "tokyonight" },
       })
     end,
   },
   {
-    "ellisonleao/gruvbox.nvim",
-    priority = 1000,
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      vim.cmd("colorscheme gruvbox")
+      require("lualine").setup({
+        options = { theme = "auto" },
+      })
     end,
   },
 }, {
