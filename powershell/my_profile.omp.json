@@ -6,7 +6,7 @@
       "newline": true,
       "segments": [
         {
-          "background": "#FEF5ED",
+          "background": "#F0F2FE",
           "foreground": "#011627",
           "leading_diamond": "\ue0b2",
           "options": {
@@ -16,29 +16,29 @@
           },
           "style": "diamond",
           "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}}",
-          "trailing_diamond": "<transparent,#FEF5ED>\ue0b2</>",
+          "trailing_diamond": "<transparent,#F0F2FE>\ue0b2</>",
           "type": "os"
         },
         {
-          "background": "#FEF5ED",
+          "background": "#F0F2FE",
           "foreground": "#011627",
           "leading_diamond": "\ue0b2",
           "style": "diamond",
           "template": "\uf489 {{ .Name }}",
-          "trailing_diamond": "<transparent,#FEF5ED>\ue0b2</>",
+          "trailing_diamond": "<transparent,#F0F2FE>\ue0b2</>",
           "type": "shell"
         },
         {
-          "background": "#516BEB",
+          "background": "#346BAA",
           "foreground": "#ffffff",
           "leading_diamond": "\ue0b2",
           "style": "diamond",
           "template": "\ue266 MEM: {{ round .PhysicalPercentUsed .Precision }}% | {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB \ue266 ",
-          "trailing_diamond": "<transparent,#516BEB>\ue0b2</>",
+          "trailing_diamond": "<transparent,#346BAA>\ue0b2</>",
           "type": "sysinfo"
         },
         {
-          "background": "#575656",
+          "background": "#D84F58",
           "foreground": "#d6deeb",
           "leading_diamond": "\ue0b2",
           "options": {
@@ -87,7 +87,7 @@
             "time_format": "15:04"
           },
           "style": "plain",
-          "template": " \u2665 {{ .CurrentDate | date .Format }} |",
+          "template": " {{ .CurrentDate | date .Format }} |",
           "type": "time"
         },
         {
@@ -98,7 +98,7 @@
         {
           "options": {
             "folder_icon": "\uf07b ",
-            "folder_separator_icon": " \uf061 ",
+            "folder_separator_icon": "→ ",
             "home_icon": "\ueb06 "
           },
           "style": "plain",
@@ -127,7 +127,7 @@
   "console_title_template": "{{ .Folder }}",
   "transient_prompt": {
     "background": "transparent",
-    "foreground": "#FEF5ED",
+    "foreground": "#F0F2FE",
     "template": "\ue285 "
   },
   "version": 4
