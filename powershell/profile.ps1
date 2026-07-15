@@ -29,3 +29,8 @@ function whereis {
     param([string]$name)
     Get-Command $name -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
 }
+
+# PSFzf
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f'
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'

@@ -1,7 +1,7 @@
-# Windows Dev Environment Setup Guide
+# PowerShell / Windows Environment Setup Guide
 
 Setup guide for a new machine (install steps only — config content lives in
-`dotfiles\powershell\profile.ps1` and `dotfiles\nvim\init.vim` already, no need to repeat it here)
+`dotfiles\powershell\profile.ps1` already, no need to repeat it here)
 
 ## Step 1: PowerShell Core 7
 
@@ -45,10 +45,19 @@ scoop install neovim
 scoop install vim
 ```
 
+(Neovim config setup is covered separately in `setup_nvim.md`)
+
 ## Step 7: NodeJS
 
 ```powershell
 scoop install nodejs-lts
+```
+
+npm ships bundled with Node.js — no separate install needed. Verify both:
+
+```powershell
+node --version
+npm --version
 ```
 
 ## Step 8: Yarn (required by coc.nvim)
@@ -76,11 +85,27 @@ Install-Module -Name z -Repository PSGallery -Scope CurrentUser -Force
 > PSReadLine ships with PowerShell 7 by default — no need to install it separately.
 > Check first with `Get-Module -ListAvailable -Name PSReadLine`
 
-## Step 11: Wire up the profile to dotfiles
+## Step 11: fzf + PSFzf (fuzzy finder in PowerShell)
 
-| Opened from                       | File used                            |
-| --------------------------------- | ------------------------------------ |
-| Windows Terminal (standalone app) | `Microsoft.PowerShell_profile.ps1` |
+`fzf` is the actual CLI tool; `PSFzf` is the PowerShell module that wires it
+into the shell (history search, file search, etc.). Install both:
+
+```powershell
+scoop install fzf
+Install-Module -Name PSFzf -Scope CurrentUser -Force
+```
+
+Add to the profile (see Step 12 below for where the profile lives):
+
+```powershell
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f'
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
+```
+
+`Ctrl+f` opens fzf file search, `Ctrl+r` opens fzf command history search.
+
+## Step 12: Wire up the profile to dotfiles
 
 **1. Open Windows Terminal (the standalone app)** and run:
 
@@ -91,26 +116,12 @@ code $PROFILE
 
 You should get the path: `C:\Users\<user>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
 
-**2. Both files should contain just this one line**:
+**2. The file should contain just this one line**:
 
 ```powershell
 . "$HOME\Documents\dotfiles\powershell\profile.ps1"
 ```
 
-(All the real config lives in the single `profile.ps1` file — no need to duplicate it in two places.)
+(All the real config lives in the single `profile.ps1` file — no need to duplicate it anywhere else.)
 
-## Step 12: Wire up the Neovim config to dotfiles
-
-Neovim looks for its config at a fixed path: `$env:LOCALAPPDATA\nvim\init.lua`.
-That file should contain just one line, pointing back to the real config in dotfiles:
-
-```powershell
-New-Item -ItemType Directory -Path "$env:LOCALAPPDATA\nvim" -Force
-code "$env:LOCALAPPDATA\nvim\init.lua"
-```
-
-```lua
-dofile("C:/Users/<user>/Documents/dotfiles/nvim/init.lua")
-```
-
-(All the real Neovim config — options, plugins, keymaps — lives in `dotfiles\nvim\` already.)
+---
