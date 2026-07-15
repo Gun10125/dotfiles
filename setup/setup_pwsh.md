@@ -95,16 +95,6 @@ scoop install fzf
 Install-Module -Name PSFzf -Scope CurrentUser -Force
 ```
 
-Add to the profile (see Step 12 below for where the profile lives):
-
-```powershell
-Import-Module PSFzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f'
-Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
-```
-
-`Ctrl+f` opens fzf file search, `Ctrl+r` opens fzf command history search.
-
 ## Step 12: Wire up the profile to dotfiles
 
 **1. Open Windows Terminal (the standalone app)** and run:
