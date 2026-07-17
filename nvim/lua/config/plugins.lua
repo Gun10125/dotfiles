@@ -66,6 +66,15 @@ require("lazy").setup({
     end,
   },
 
+  -- Popup showing available keybindings when leader key is pressed
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("which-key").setup({})
+    end,
+  },
+
 }, {
   -- Prevent lazy.nvim from resetting runtimepath — required so that
   -- our custom "~/Documents/dotfiles/nvim" path (prepended in init.lua)

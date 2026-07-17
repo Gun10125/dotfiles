@@ -1,3 +1,5 @@
+vim.g.mapleader = " " -- user spacebar is leader key
+
 vim.opt.number = true
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
