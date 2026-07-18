@@ -23,6 +23,22 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
+Set-PSReadLineOption -AddToHistoryHandler {
+    param([string]$line)
+
+    $default = [Microsoft.PowerShell.PSConsoleReadLine]::GetDefaultAddToHistoryOption($line)
+    if ($default -eq 'SkipAdding' -or $default -eq $false) { return $false }
+
+    $trimmed = $line.Trim()
+    if ([string]::IsNullOrWhiteSpace($trimmed)) { return $false }
+
+    $exists = [Microsoft.PowerShell.PSConsoleReadLine]::GetHistoryItems() |
+    Where-Object { $_.CommandLine -ceq $trimmed }
+    if ($exists) { return $false }
+
+    return $true
+}
+
 # Utility: find full path of a command
 Set-Alias w whereis
 function whereis {
