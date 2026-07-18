@@ -75,6 +75,16 @@ require("lazy").setup({
     end,
   },
 
+  -- Treesitter: advanced syntax highlighting that understands code structure
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter").install({ "lua", "vim", "vimdoc", "markdown", "json", "bash" })
+    end,
+  },
+
 }, {
   -- Prevent lazy.nvim from resetting runtimepath — required so that
   -- our custom "~/Documents/dotfiles/nvim" path (prepended in init.lua)
