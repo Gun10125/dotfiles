@@ -41,11 +41,16 @@ dotfiles/
 └── nvim/
     ├── init.lua                  ← entry point, just requires the files below
     └── lua/
-        └── config/
-            ├── options.lua       ← vim.opt settings (tabstop, mouse, etc.)
-            ├── plugins.lua       ← lazy.nvim bootstrap + plugin list
-            ├── keymaps.lua       ← keybindings (NERDTree toggle, etc.)
-            └── colors.lua        ← custom colorscheme (dark + transparent)
+        ├── config/
+        │   ├── options.lua       ← vim.opt settings (tabstop, mouse, etc.)
+        │   ├── plugins.lua       ← lazy.nvim bootstrap + import plugins/
+        │   ├── keymaps.lua       ← keybindings (NERDTree toggle, etc.)
+        │   └── colors.lua        ← custom colorscheme (dark + transparent)
+        └── plugins/
+            ├── snacks.lua        ← dashboard
+            ├── nerdtree.lua      ← file explorer
+            ├── lualine.lua       ← statusline
+            └── ...               ← one file per plugin
 ```
 
 `init.lua` at the root only needs:
