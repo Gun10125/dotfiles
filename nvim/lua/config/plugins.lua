@@ -85,6 +85,14 @@ require("lazy").setup({
     end,
   },
 
+  -- Git diff indicators in the sign column (added/changed/removed lines)
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+    end,
+  },
+
 }, {
   -- Prevent lazy.nvim from resetting runtimepath — required so that
   -- our custom "~/Documents/dotfiles/nvim" path (prepended in init.lua)
